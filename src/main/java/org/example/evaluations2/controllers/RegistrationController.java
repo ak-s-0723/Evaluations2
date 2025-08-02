@@ -1,6 +1,5 @@
 package org.example.evaluations2.controllers;
 
-import jakarta.validation.Valid;
 import org.example.evaluations2.dtos.UserDto;
 import org.example.evaluations2.models.User;
 import org.example.evaluations2.services.UserService;
@@ -18,7 +17,7 @@ public class RegistrationController {
     private UserService userService;
 
     @PostMapping
-    public User registerUser(@Valid @RequestBody UserDto user) {
+    public User registerUser(@RequestBody UserDto user) {
        return userService.registerNewUserAccount(user);
     }
 }
