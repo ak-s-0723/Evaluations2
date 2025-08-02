@@ -4,9 +4,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.example.evaluations2.annotations.PasswordMatches;
 import org.example.evaluations2.dtos.UserDto;
-import org.springframework.stereotype.Component;
 
-@Component
 public class PasswordMatchesValidator
         implements ConstraintValidator<PasswordMatches, Object> {
 
