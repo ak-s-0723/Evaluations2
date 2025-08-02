@@ -15,11 +15,7 @@ public class UserRepository {
     }
 
     public User save(User user) {
-        return userMap.put(user.getEmail(), user);
-    }
-
-    public User findByEmail(String email) {
-        if(userMap.containsKey(email)) return userMap.get(email);
-        return null;
+        userMap.put(user.getEmail(), user);
+        return userMap.get(user.getEmail());
     }
 }

@@ -3,12 +3,10 @@ package org.example.evaluations2.util;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.example.evaluations2.annotations.ValidEmail;
-import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Component
 public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
 
     private Pattern pattern;

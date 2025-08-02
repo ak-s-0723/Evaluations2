@@ -4,12 +4,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.evaluations2.annotations.PasswordMatches;
 import org.example.evaluations2.annotations.ValidEmail;
 
 @Getter
 @Setter
-@PasswordMatches
 public class UserDto {
 
     @ValidEmail

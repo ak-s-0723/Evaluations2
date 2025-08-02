@@ -1,6 +1,5 @@
 package org.example.evaluations2.services;
 
-import org.example.evaluations2.exceptions.UserAlreadyExistException;
 import org.example.evaluations2.models.User;
 import org.example.evaluations2.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +14,7 @@ public class UserService implements IUserService {
     private UserRepository userRepository;
 
     @Override
-    public User registerNewUserAccount(UserDto userDto) throws UserAlreadyExistException {
-        if (emailExists(userDto.getEmail())) {
-            throw new UserAlreadyExistException("There is an account with that email address: "
-                    + userDto.getEmail());
-        }
-
+    public User registerNewUserAccount(UserDto userDto) {
         User user = new User();
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
@@ -29,9 +23,5 @@ public class UserService implements IUserService {
         user.setRoles(Arrays.asList("ROLE_USER"));
 
         return userRepository.save(user);
-    }
-
-    private boolean emailExists(String email) {
-        return userRepository.findByEmail(email) != null;
     }
 }
