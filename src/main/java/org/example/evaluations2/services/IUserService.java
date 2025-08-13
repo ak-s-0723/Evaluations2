@@ -1,8 +1,7 @@
 package org.example.evaluations2.services;
 
-import org.example.evaluations2.dtos.UserDto;
-import org.example.evaluations2.models.User;
+import org.example.evaluations2.dtos.LoginRequestDto;
 
 public interface IUserService {
-    User registerNewUserAccount(UserDto userDto);
+    String login(LoginRequestDto loginRequestDto);
 }

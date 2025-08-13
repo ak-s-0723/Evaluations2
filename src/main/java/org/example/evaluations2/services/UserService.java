@@ -1,18 +1,18 @@
 package org.example.evaluations2.services;
 
-import org.example.evaluations2.exceptions.UserAlreadyExistException;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.example.evaluations2.exceptions.PasswordMismatchException;
+import org.example.evaluations2.exceptions.UserNotFoundException;
 import org.example.evaluations2.models.User;
 import org.example.evaluations2.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.example.evaluations2.dtos.UserDto;
-
-import java.util.List;
-import java.util.UUID;
+import org.example.evaluations2.dtos.LoginRequestDto;
 
 @Service
 public class UserService implements IUserService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -20,24 +20,18 @@ public class UserService implements IUserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public User registerNewUserAccount(UserDto userDto) throws UserAlreadyExistException {
-        if (emailExists(userDto.getEmail())) {
-            throw new UserAlreadyExistException("There is already an account with email address: "
-                    + userDto.getEmail());
+    public String login(LoginRequestDto loginRequestDto) throws UserNotFoundException, PasswordMismatchException {
+        User savedUser = userRepository.findByEmail(loginRequestDto.getEmail());
+
+        if (savedUser == null) {
+            throw new UserNotFoundException("There is no account with an email address: "
+                    + loginRequestDto.getEmail());
         }
 
-        User user = new User();
-        user.setId(UUID.randomUUID());
-        user.setFirstName(userDto.getFirstName());
-        user.setLastName(userDto.getLastName());
-        user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-        user.setEmail(userDto.getEmail());
-        user.setRoles(List.of("ROLE_USER"));
+        if(!bCryptPasswordEncoder.matches(loginRequestDto.getPassword(), savedUser.getPassword())) {
+            throw new PasswordMismatchException("Please type correct password, or reset it");
+        }
 
-        return userRepository.save(user);
-    }
-
-    private boolean emailExists(String email) {
-        return userRepository.findByEmail(email) != null;
+        return RandomStringUtils.randomAlphanumeric(15);
     }
 }
