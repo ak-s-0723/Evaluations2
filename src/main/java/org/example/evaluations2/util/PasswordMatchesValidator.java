@@ -3,7 +3,6 @@ package org.example.evaluations2.util;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.example.evaluations2.annotations.PasswordMatches;
-import org.example.evaluations2.dtos.UserDto;
 
 public class PasswordMatchesValidator
         implements ConstraintValidator<PasswordMatches, Object> {
@@ -13,8 +12,8 @@ public class PasswordMatchesValidator
     }
 
     @Override
-    public boolean isValid(Object obj, ConstraintValidatorContext context){
-        UserDto user = (UserDto) obj;
-        return user.getPassword().equals(user.getMatchingPassword());
+    public boolean isValid(Object obj, ConstraintValidatorContext context) {
+        // Add logic here
+        return false;
     }
 }
