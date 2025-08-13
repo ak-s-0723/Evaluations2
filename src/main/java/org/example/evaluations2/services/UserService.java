@@ -4,16 +4,20 @@ import org.example.evaluations2.exceptions.UserAlreadyExistException;
 import org.example.evaluations2.models.User;
 import org.example.evaluations2.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.example.evaluations2.dtos.UserDto;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public User registerNewUserAccount(UserDto userDto) throws UserAlreadyExistException {
@@ -23,9 +27,10 @@ public class UserService implements IUserService {
         }
 
         User user = new User();
+        user.setId(UUID.randomUUID());
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         user.setEmail(userDto.getEmail());
         user.setRoles(List.of("ROLE_USER"));
 
