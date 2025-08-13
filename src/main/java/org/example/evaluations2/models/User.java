@@ -10,9 +10,14 @@ import java.util.UUID;
 @Getter
 public class User {
     private UUID id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private String password;
+
     private List<String> roles;
 }
