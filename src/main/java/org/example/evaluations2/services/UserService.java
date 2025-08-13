@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.example.evaluations2.dtos.UserDto;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserService implements IUserService {
@@ -26,7 +27,7 @@ public class UserService implements IUserService {
         user.setLastName(userDto.getLastName());
         user.setPassword(userDto.getPassword());
         user.setEmail(userDto.getEmail());
-        user.setRoles(Arrays.asList("ROLE_USER"));
+        user.setRoles(List.of("ROLE_USER"));
 
         return userRepository.save(user);
     }
