@@ -16,7 +16,9 @@ public class MailConfig {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        //ToDo : Create an account on gmail and app password and use those details here when you run app locally
+        //ToDo : Create an account on gmail and app password
+        // through https://myaccount.google.com/apppasswords
+        // and use those details here when you run app locally
         mailSender.setUsername("");
         mailSender.setPassword("");
 
