@@ -31,16 +31,6 @@ public class RegistrationListener implements
     }
 
     private void confirmRegistration(OnRegistrationCompleteEvent event) {
-        User user = event.getUser();
-        String token = RandomStringUtils.randomAlphanumeric(registrationTokenLength);
-        registrationService.createVerificationToken(user, token);
-
-        String confirmationUrl
-                = event.getAppUrl() + "/registrationConfirm?token=" + token;
-        SimpleMailMessage email = new SimpleMailMessage();
-        email.setTo(user.getEmail());
-        email.setSubject("Confirm Registration");
-        email.setText(emailMessage + "\r\n" + confirmationUrl);
-        mailSender.send(email);
+        //Add your Implementation here
     }
 }

@@ -19,9 +19,6 @@ public class RegistrationPublisher {
     private Locale locale = Locale.ENGLISH;
 
     public void publishEvent(User registeredUser) {
-        System.out.println("Publishing user registration event... ");
-        OnRegistrationCompleteEvent onRegistrationCompleteEvent = new OnRegistrationCompleteEvent(registeredUser,
-        locale, appUrl);
-        applicationEventPublisher.publishEvent(onRegistrationCompleteEvent);
+        //Add your Implementation here
     }
 }
