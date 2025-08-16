@@ -47,20 +47,6 @@ public class RegistrationService implements IRegistrationService {
 
     @Override
     public String confirmRegistration(String token) {
-        System.out.println("Confirming user registration as user clicked on verification link in the email.");
-        UserVerificationToken userVerificationToken = tokenRepository.findByValue(token);
-        if (userVerificationToken == null) {
-            throw new RuntimeException("Invalid Token passed");
-        }
-
-        User user = userVerificationToken.getUser();
-        Calendar cal = Calendar.getInstance();
-        if ((userVerificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
-            throw new RuntimeException("Confirmation Link expired");
-        }
-
-        user.setEnabled(true);
-        userRepository.save(user);
-        return confirmationMessage;
+        return null;
     }
 }
