@@ -8,7 +8,6 @@ import org.example.evaluations2.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -19,8 +18,6 @@ public class RegistrationService implements IRegistrationService {
 
     @Autowired
     private TokenRepository tokenRepository;
-
-    private final String confirmationMessage = "Your account has been registered successfully, Welcome to the platform";
 
     @Override
     public void createVerificationToken(User user, String token) {
@@ -42,25 +39,5 @@ public class RegistrationService implements IRegistrationService {
         }
 
         throw new RuntimeException("User Email already registered");
-    }
-
-
-    @Override
-    public String confirmRegistration(String token) {
-        System.out.println("Confirming user registration as user clicked on verification link in the email.");
-        UserVerificationToken userVerificationToken = tokenRepository.findByValue(token);
-        if (userVerificationToken == null) {
-            throw new RuntimeException("Invalid Token passed");
-        }
-
-        User user = userVerificationToken.getUser();
-        Calendar cal = Calendar.getInstance();
-        if ((userVerificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
-            throw new RuntimeException("Confirmation Link expired");
-        }
-
-        user.setEnabled(true);
-        userRepository.save(user);
-        return confirmationMessage;
     }
 }

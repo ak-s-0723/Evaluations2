@@ -22,9 +22,4 @@ public class RegistrationController {
         User registeredUser = registrationService.registerNewUserAccount(userDto);
         registrationPublisher.publishEvent(registeredUser);
     }
-
-    @GetMapping("/registrationConfirm")
-    public String confirmRegistration(@RequestParam("token") String token) {
-        return registrationService.confirmRegistration(token);
-    }
 }

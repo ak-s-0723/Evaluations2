@@ -18,8 +18,4 @@ public class TokenRepository {
         tokenMap.put(userVerificationToken.getToken(), userVerificationToken);
         return tokenMap.get(userVerificationToken.getToken());
     }
-
-    public UserVerificationToken findByValue(String token) {
-        return tokenMap.get(token);
-    }
 }
