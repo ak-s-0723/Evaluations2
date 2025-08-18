@@ -2,12 +2,14 @@ package org.example.evaluations2.handlers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.example.evaluations2.models.User;
 import org.example.evaluations2.services.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +30,7 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         loginNotification(authentication, request);
         redirectStrategy.sendRedirect(request,response,url);
+        clearAuthenticationAttributes(request);
     }
 
     private void loginNotification(Authentication authentication,
@@ -42,5 +45,13 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
         } catch(Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    protected void clearAuthenticationAttributes(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return;
+        }
+        session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
     }
 }
