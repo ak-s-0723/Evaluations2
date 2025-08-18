@@ -24,7 +24,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .successHandler(successHandler)  // 🔹 register your handler here
+                        .successHandler(successHandler)
                 );
 
         return http.build();

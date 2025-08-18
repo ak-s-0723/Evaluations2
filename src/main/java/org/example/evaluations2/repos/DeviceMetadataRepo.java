@@ -3,15 +3,12 @@ package org.example.evaluations2.repos;
 import org.example.evaluations2.models.DeviceMetadata;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
 public class DeviceMetadataRepo {
-     Map<Long,DeviceMetadata> deviceMetadataMap;
+     Map<UUID,DeviceMetadata> deviceMetadataMap;
 
     public DeviceMetadataRepo() {
         this.deviceMetadataMap = new HashMap<>();
@@ -22,7 +19,7 @@ public class DeviceMetadataRepo {
         return deviceMetadataMap.get(deviceMetadata.getId());
     }
 
-    public List<DeviceMetadata> findByUserId(Long userId) {
+    public List<DeviceMetadata> findByUserId(UUID userId) {
         return deviceMetadataMap.values().stream()
                 .filter(metadata -> metadata.getUserId().equals(userId))
                 .collect(Collectors.toList());
