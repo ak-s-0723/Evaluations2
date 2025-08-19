@@ -8,5 +8,5 @@ public class JwtConstants {
     public static final String ORGANIZATION_NAME = "Scaler";
     public static final String GENERATION_TIME = "genT";
     public static final String EXPIRY_TIME = "expT";
-    public static final Integer  EXPIRY_WINDOW = 36000;
+    public static final Integer  EXPIRY_WINDOW = 3600000; //in ms
 }

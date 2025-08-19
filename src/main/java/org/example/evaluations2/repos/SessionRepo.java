@@ -4,6 +4,7 @@ import org.example.evaluations2.models.Session;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class SessionRepo {
@@ -19,7 +20,8 @@ public class SessionRepo {
     }
 
     public List<Session> findActiveSessionsByUserId(UUID userId) {
-        //Add implementation here
-        return null;
+        return sessionMap.values().stream()
+                .filter(session -> session.getUserId().equals(userId))
+                .collect(Collectors.toList());
     }
 }

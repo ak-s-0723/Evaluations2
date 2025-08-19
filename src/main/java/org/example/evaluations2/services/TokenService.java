@@ -1,6 +1,7 @@
 package org.example.evaluations2.services;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.example.evaluations2.constants.JwtConstants;
 import org.example.evaluations2.models.Session;
 import org.example.evaluations2.models.State;
@@ -33,7 +34,7 @@ public class TokenService implements ITokenService {
         claims.put(JwtConstants.GENERATION_TIME,nowInMillis);
         claims.put(JwtConstants.EXPIRY_TIME,nowInMillis+JwtConstants.EXPIRY_WINDOW);
 
-        String token = Jwts.builder().claims(claims).signWith(secretKey).compact();
+        String token = Jwts.builder().claims(claims).signWith(secretKey,SignatureAlgorithm.HS256).compact();
 
         Session session = new Session();
         session.setId(sessionId);
