@@ -7,4 +7,8 @@ import lombok.Setter;
 @Getter
 public class ResponseDto {
     private ResponseStatus status;
+
+    public ResponseDto(ResponseStatus responseStatus) {
+        this.status = responseStatus;
+    }
 }

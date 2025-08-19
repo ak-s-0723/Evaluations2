@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,16 +20,14 @@ public class AuthController {
 
     @PostMapping("/authToken")
     public ResponseEntity<ResponseDto> generateAuthToken(@RequestBody RequestDto requestDto) {
-        ResponseDto responseDto = new ResponseDto();
         try {
             String token = tokenService.generateJwt(requestDto.getUserId());
-            responseDto.setStatus(ResponseStatus.SUCCESS);
-            MultiValueMap<String,String> headers = new LinkedMultiValueMap<>();
-            headers.add(HttpHeaders.SET_COOKIE,token);
-            return new ResponseEntity<>(responseDto,headers, HttpStatus.CREATED);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+                    .body(new ResponseDto(ResponseStatus.SUCCESS));
         } catch (RuntimeException exception) {
-            responseDto.setStatus(ResponseStatus.FAILURE);
-            return new ResponseEntity<>(responseDto,null,HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDto(ResponseStatus.FAILURE));
         }
     }
 }

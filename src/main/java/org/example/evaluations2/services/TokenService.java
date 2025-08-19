@@ -19,10 +19,10 @@ import java.util.UUID;
 public class TokenService implements ITokenService {
 
     @Autowired
-    private SecretKey secretKey;
+    SecretKey secretKey;
 
     @Autowired
-    private SessionRepo sessionRepo;
+    SessionRepo sessionRepo;
 
     public String generateJwt(UUID userId) {
         UUID sessionId = UUID.randomUUID();
@@ -34,7 +34,7 @@ public class TokenService implements ITokenService {
         claims.put(JwtConstants.GENERATION_TIME,nowInMillis);
         claims.put(JwtConstants.EXPIRY_TIME,nowInMillis+JwtConstants.EXPIRY_WINDOW);
 
-        String token = Jwts.builder().claims(claims).signWith(secretKey,SignatureAlgorithm.HS256).compact();
+        String token = Jwts.builder().claims(claims).signWith(secretKey).compact();
 
         Session session = new Session();
         session.setId(sessionId);
