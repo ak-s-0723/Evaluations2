@@ -11,7 +11,7 @@
 - In case of Exception, ResponseDto will have FAILURE status and Exception Message. Return that along with 401 status code.
 
 #### AuthService
-- Please keep this in mind that whichever token we generated, we persisted that in sessionMap through SessionRepo.
+- Please keep this in mind that whichever token we generated, we persisted that in sessionMap through SessionRepo while adding validation logic.
 - You need to add implementation in `validateToken` method, where you need to check if JWT is created by us and non-expired. If there is any violation, You need to throw JwtException.
 - Please make use of JwtConstants and SecretKey bean defined in AuthConfig
 
