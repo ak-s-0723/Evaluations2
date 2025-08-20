@@ -38,6 +38,10 @@ public class DeviceService {
         parser = new Parser();
     }
 
+    public List<DeviceMetadata> findDevicesByUserEmail(String userEmail) {
+        return deviceMetadataRepository.findByUserEmail(userEmail);
+    }
+
     private String getDeviceDetails(String userAgent) {
         String deviceDetails = "";
 
@@ -64,16 +68,12 @@ public class DeviceService {
         String deviceDetails = getDeviceDetails(request.getHeader("user-agent"));
 
         DeviceMetadata existingDevice
-                = findExistingDevice(user.getId(), deviceDetails, location);
+                = findExistingDevice(user.getEmail(), deviceDetails, location);
 
         if (Objects.isNull(existingDevice)) {
             DeviceMetadata deviceMetadata = new DeviceMetadata();
             deviceMetadata.setId(UUID.randomUUID());
-            if(user.getId()!=null) {
-                deviceMetadata.setUserId(user.getId());
-            } else {
-                deviceMetadata.setUserId(UUID.randomUUID());
-            }
+            deviceMetadata.setUserEmail(user.getEmail());
             deviceMetadata.setLocation(location);
             deviceMetadata.setDeviceDetails(deviceDetails);
             deviceMetadata.setLastLoggedIn(new Date());
@@ -85,9 +85,9 @@ public class DeviceService {
     }
 
     private DeviceMetadata findExistingDevice(
-            UUID userId, String deviceDetails, String location) {
+            String userEmail, String deviceDetails, String location) {
         List<DeviceMetadata> knownDevices
-                = deviceMetadataRepository.findByUserId(userId);
+                = deviceMetadataRepository.findByUserEmail(userEmail);
 
         for (DeviceMetadata existingDevice : knownDevices) {
             if (existingDevice.getDeviceDetails().equals(deviceDetails)

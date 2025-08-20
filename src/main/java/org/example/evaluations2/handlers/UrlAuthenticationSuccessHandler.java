@@ -23,8 +23,7 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
 
     @Autowired
     private RedirectStrategy redirectStrategy;
-
-    private final String url = "https://scaler.com";
+    private final String url = "http://localhost:8080/devices/users/user";
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {

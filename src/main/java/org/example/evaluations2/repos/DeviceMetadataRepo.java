@@ -19,9 +19,9 @@ public class DeviceMetadataRepo {
         return deviceMetadataMap.get(deviceMetadata.getId());
     }
 
-    public List<DeviceMetadata> findByUserId(UUID userId) {
+    public List<DeviceMetadata> findByUserEmail(String userEmail) {
         return deviceMetadataMap.values().stream()
-                .filter(metadata -> metadata.getUserId().equals(userId))
+                .filter(metadata -> metadata.getUserEmail().equals(userEmail))
                 .collect(Collectors.toList());
     }
 }

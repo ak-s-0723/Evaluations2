@@ -10,7 +10,7 @@ import java.util.UUID;
 @Getter
 public class DeviceMetadata {
     private UUID id;
-    private UUID userId;
+    private String userEmail;
     private String deviceDetails;
     private String location;
     private Date lastLoggedIn;
