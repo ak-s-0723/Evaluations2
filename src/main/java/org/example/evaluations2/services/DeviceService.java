@@ -39,7 +39,8 @@ public class DeviceService {
     }
 
     public List<DeviceMetadata> findDevicesByUserEmail(String userEmail) {
-        return deviceMetadataRepository.findByUserEmail(userEmail);
+        //Add your implementation here
+        return null;
     }
 
     private String getDeviceDetails(String userAgent) {
