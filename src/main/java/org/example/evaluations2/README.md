@@ -14,6 +14,12 @@ As soon as login is successful, we need to call `sendRedirect` method of `Custom
 - No changes needed in pom.xml or application.properties.
 - No new file need to be added.
 - All Testcases will fail, if you will try to run without providing solution.
+- UserName and Password are present in application.properties
+
+## References
+https://www.baeldung.com/spring-security-login-new-device-location
+https://www.baeldung.com/spring-redirect-after-login
+https://www.baeldung.com/geolocation-by-ip-with-maxmind
 
 
 
