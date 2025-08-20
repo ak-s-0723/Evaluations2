@@ -12,8 +12,6 @@ import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
 @Component
 public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -21,7 +19,7 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
     DeviceService deviceService;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)  {
         loginNotification(authentication, request);
         clearAuthenticationAttributes(request);
     }
