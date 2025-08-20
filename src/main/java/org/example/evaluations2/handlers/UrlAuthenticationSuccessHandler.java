@@ -19,11 +19,11 @@ import java.io.IOException;
 public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
-    private DeviceService deviceService;
+    DeviceService deviceService;
 
     @Autowired
-    private RedirectStrategy redirectStrategy;
-    private final String url = "http://localhost:8080/devices/users/user";
+    RedirectStrategy redirectStrategy;
+    final String url = "http://localhost:8080/devices/users/user";
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
