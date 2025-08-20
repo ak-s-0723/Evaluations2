@@ -38,10 +38,6 @@ public class DeviceService {
         parser = new Parser();
     }
 
-    public List<DeviceMetadata> findDevicesByUserEmail(String userEmail) {
-        return deviceMetadataRepository.findByUserEmail(userEmail);
-    }
-
     private String getDeviceDetails(String userAgent) {
         String deviceDetails = "";
 

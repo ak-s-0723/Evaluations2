@@ -8,7 +8,6 @@ import org.example.evaluations2.services.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -19,16 +18,11 @@ import java.io.IOException;
 public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
-    private DeviceService deviceService;
-
-    @Autowired
-    private RedirectStrategy redirectStrategy;
-    private final String url = "http://localhost:8080/devices/users/user";
+    DeviceService deviceService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         loginNotification(authentication, request);
-        redirectStrategy.sendRedirect(request,response,url);
         clearAuthenticationAttributes(request);
     }
 
