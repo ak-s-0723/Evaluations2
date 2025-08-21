@@ -39,17 +39,19 @@ public class DeviceService {
     }
 
     private String getDeviceDetails(String userAgent) {
-        String deviceDetails = "";
-
-        Client client = parser.parse(userAgent);
-        if (nonNull(client)) {
-            deviceDetails = client.userAgent.family
-                    + " " + client.userAgent.major + "."
-                    + client.userAgent.minor + " - "
-                    + client.os.family + " " + client.os.major
-                    + "." + client.os.minor;
-        }
-        return deviceDetails;
+        //Add implementation here
+        return null;
+//        String deviceDetails = "";
+//
+//        Client client = parser.parse(userAgent);
+//        if (nonNull(client)) {
+//            deviceDetails = client.userAgent.family
+//                    + " " + client.userAgent.major + "."
+//                    + client.userAgent.minor + " - "
+//                    + client.os.family + " " + client.os.major
+//                    + "." + client.os.minor;
+//        }
+//        return deviceDetails;
     }
 
     public void verifyDevice(User user, HttpServletRequest request) throws IOException, GeoIp2Exception {
@@ -66,31 +68,34 @@ public class DeviceService {
         DeviceMetadata existingDevice
                 = findExistingDevice(user.getEmail(), deviceDetails, location);
 
-        if (Objects.isNull(existingDevice)) {
-            DeviceMetadata deviceMetadata = new DeviceMetadata();
-            deviceMetadata.setId(UUID.randomUUID());
-            deviceMetadata.setUserEmail(user.getEmail());
-            deviceMetadata.setLocation(location);
-            deviceMetadata.setDeviceDetails(deviceDetails);
-            deviceMetadata.setLastLoggedIn(new Date());
-            deviceMetadataRepository.save(deviceMetadata);
-        } else {
-            existingDevice.setLastLoggedIn(new Date());
-            deviceMetadataRepository.save(existingDevice);
-        }
+        //Add implementation here
+//        if (Objects.isNull(existingDevice)) {
+//            DeviceMetadata deviceMetadata = new DeviceMetadata();
+//            deviceMetadata.setId(UUID.randomUUID());
+//            deviceMetadata.setUserEmail(user.getEmail());
+//            deviceMetadata.setLocation(location);
+//            deviceMetadata.setDeviceDetails(deviceDetails);
+//            deviceMetadata.setLastLoggedIn(new Date());
+//            deviceMetadataRepository.save(deviceMetadata);
+//        } else {
+//            existingDevice.setLastLoggedIn(new Date());
+//            deviceMetadataRepository.save(existingDevice);
+//        }
     }
 
     private DeviceMetadata findExistingDevice(
             String userEmail, String deviceDetails, String location) {
-        List<DeviceMetadata> knownDevices
-                = deviceMetadataRepository.findByUserEmail(userEmail);
-
-        for (DeviceMetadata existingDevice : knownDevices) {
-            if (existingDevice.getDeviceDetails().equals(deviceDetails)
-                    && existingDevice.getLocation().equals(location)) {
-                return existingDevice;
-            }
-        }
+         //Add implementation here
+//
+//        List<DeviceMetadata> knownDevices
+//                = deviceMetadataRepository.findByUserEmail(userEmail);
+//
+//        for (DeviceMetadata existingDevice : knownDevices) {
+//            if (existingDevice.getDeviceDetails().equals(deviceDetails)
+//                    && existingDevice.getLocation().equals(location)) {
+//                return existingDevice;
+//            }
+//        }
         return null;
     }
 
@@ -107,15 +112,17 @@ public class DeviceService {
     }
 
     private String getIpLocation(String ip) throws IOException, GeoIp2Exception {
-        String location = "";
-        InetAddress ipAddress = InetAddress.getByName(ip);
-
-        CityResponse cityResponse = dbReader.city(ipAddress);
-
-        if (nonNull(cityResponse) &&
-                nonNull(cityResponse.getCity())) {
-            location = cityResponse.getCity().getName();
-        }
-        return location;
+        //Add implementation here
+        return null;
+//        String location = "";
+//        InetAddress ipAddress = InetAddress.getByName(ip);
+//
+//        CityResponse cityResponse = dbReader.city(ipAddress);
+//
+//        if (nonNull(cityResponse) &&
+//                nonNull(cityResponse.getCity())) {
+//            location = cityResponse.getCity().getName();
+//        }
+//        return location;
     }
 }
