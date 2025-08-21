@@ -2,21 +2,14 @@ package org.example.evaluations2.services;
 
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
-import com.maxmind.geoip2.model.CityResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.example.evaluations2.models.DeviceMetadata;
 import org.example.evaluations2.models.User;
 import org.example.evaluations2.repos.DeviceMetadataRepo;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
-import ua_parser.Client;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 import ua_parser.Parser;
 
@@ -39,19 +32,8 @@ public class DeviceService {
     }
 
     private String getDeviceDetails(String userAgent) {
-        //Add implementation here
+        //Add Implementation here
         return null;
-//        String deviceDetails = "";
-//
-//        Client client = parser.parse(userAgent);
-//        if (nonNull(client)) {
-//            deviceDetails = client.userAgent.family
-//                    + " " + client.userAgent.major + "."
-//                    + client.userAgent.minor + " - "
-//                    + client.os.family + " " + client.os.major
-//                    + "." + client.os.minor;
-//        }
-//        return deviceDetails;
     }
 
     public void verifyDevice(User user, HttpServletRequest request) throws IOException, GeoIp2Exception {
@@ -68,35 +50,12 @@ public class DeviceService {
         DeviceMetadata existingDevice
                 = findExistingDevice(user.getEmail(), deviceDetails, location);
 
-        //Add implementation here
-//        if (Objects.isNull(existingDevice)) {
-//            DeviceMetadata deviceMetadata = new DeviceMetadata();
-//            deviceMetadata.setId(UUID.randomUUID());
-//            deviceMetadata.setUserEmail(user.getEmail());
-//            deviceMetadata.setLocation(location);
-//            deviceMetadata.setDeviceDetails(deviceDetails);
-//            deviceMetadata.setLastLoggedIn(new Date());
-//            deviceMetadataRepository.save(deviceMetadata);
-//        } else {
-//            existingDevice.setLastLoggedIn(new Date());
-//            deviceMetadataRepository.save(existingDevice);
-//        }
+        //Add Implementation here
     }
 
-    private DeviceMetadata findExistingDevice(
-            String userEmail, String deviceDetails, String location) {
-         //Add implementation here
-//
-//        List<DeviceMetadata> knownDevices
-//                = deviceMetadataRepository.findByUserEmail(userEmail);
-//
-//        for (DeviceMetadata existingDevice : knownDevices) {
-//            if (existingDevice.getDeviceDetails().equals(deviceDetails)
-//                    && existingDevice.getLocation().equals(location)) {
-//                return existingDevice;
-//            }
-//        }
-        return null;
+    private DeviceMetadata findExistingDevice(String userEmail, String deviceDetails, String location) {
+         //Add Implementation here
+         return null;
     }
 
     private String extractIp(HttpServletRequest request) {
@@ -114,15 +73,5 @@ public class DeviceService {
     private String getIpLocation(String ip) throws IOException, GeoIp2Exception {
         //Add implementation here
         return null;
-//        String location = "";
-//        InetAddress ipAddress = InetAddress.getByName(ip);
-//
-//        CityResponse cityResponse = dbReader.city(ipAddress);
-//
-//        if (nonNull(cityResponse) &&
-//                nonNull(cityResponse.getCity())) {
-//            location = cityResponse.getCity().getName();
-//        }
-//        return location;
     }
 }
