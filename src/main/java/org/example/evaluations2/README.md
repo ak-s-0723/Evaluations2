@@ -1,4 +1,4 @@
-## Display User's Device/Login Info once Login is successful using Spring Security
+## Persist User's Device/Login Info once Login is successful using Spring Security
 
 ### Requirement
 
