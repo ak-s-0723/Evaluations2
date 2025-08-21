@@ -1,10 +1,10 @@
-# What to do after Login is successful ?
+# Call an API after Spring Security Login is successful
 
 ## Requirements
 
-#### Please solve this assignment once you have solved previous assignments
+#### Please solve this assignment once you have solved previous assignments of Spring Security for better context
 
-Now, we want to show Device Details which we persisted in previous assignments on Browser once login is successful, so for that we need to make GET call at endpoint `/devices/users/{userEmail}` which will eventually get details from DeviceMetadataRepo using DeviceService.
+Now, we want to show Device Details which we persisted in previous assignments on Browser after login is successful, so for that we need to make GET call at endpoint `/devices/users/{userEmail}` which will eventually get details from DeviceMetadataRepo using DeviceService.
 
 Please Make sure to add implementation in `findDevicesByUserEmail` of DeviceService.
 
