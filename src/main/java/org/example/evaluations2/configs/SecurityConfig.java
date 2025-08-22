@@ -1,4 +1,4 @@
-package org.example.evaluations2.config;
+package org.example.evaluations2.configs;
 
 import org.example.evaluations2.handlers.CustomLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;

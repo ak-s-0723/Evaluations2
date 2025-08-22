@@ -17,6 +17,7 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
     @Autowired
     private AuditService auditService;
 
+
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         if (authentication != null) {
