@@ -14,10 +14,10 @@ import java.util.Arrays;
 public class RegistrationService implements IRegistrationService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    RoleRepository roleRepository;
 
     @Override
     public User registerNewUserAccount(UserDto accountDto) {
