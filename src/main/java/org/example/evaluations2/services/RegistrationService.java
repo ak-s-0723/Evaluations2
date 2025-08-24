@@ -6,7 +6,6 @@ import org.example.evaluations2.models.User;
 import org.example.evaluations2.repos.RoleRepository;
 import org.example.evaluations2.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -20,8 +19,6 @@ public class RegistrationService implements IRegistrationService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
     @Override
     public User registerNewUserAccount(UserDto accountDto) {
         if (emailExist(accountDto.getEmail())) {
@@ -31,7 +28,7 @@ public class RegistrationService implements IRegistrationService {
         User user = new User();
         user.setFirstName(accountDto.getFirstName());
         user.setLastName(accountDto.getLastName());
-        user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
+        user.setPassword(accountDto.getPassword());
         user.setEmail(accountDto.getEmail());
         user.setEnabled(true);
         user.setTokenExpired(false);
