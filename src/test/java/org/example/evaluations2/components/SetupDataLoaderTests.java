@@ -34,7 +34,6 @@ public class SetupDataLoaderTests {
 
         setupDataLoader.onApplicationEvent(mock(ContextRefreshedEvent.class));
 
-        // Capture what was saved
         ArgumentCaptor<Privilege> captor = ArgumentCaptor.forClass(Privilege.class);
         verify(privilegeRepository, times(2)).save(captor.capture());
 
