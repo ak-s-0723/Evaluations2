@@ -1,6 +1,5 @@
 package org.example.evaluations2.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,11 +24,10 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "users_roles",
+            name = "users_roles_",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    @JsonManagedReference
     private Collection<Role> roles;
 }
