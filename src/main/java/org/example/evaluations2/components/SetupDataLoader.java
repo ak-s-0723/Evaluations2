@@ -21,10 +21,10 @@ public class SetupDataLoader implements
     boolean alreadySetup = false;
 
     @Autowired
-    private RoleRepository roleRepository;
+    RoleRepository roleRepository;
 
     @Autowired
-    private PrivilegeRepository privilegeRepository;
+    PrivilegeRepository privilegeRepository;
 
     @Override
     @Transactional
