@@ -28,12 +28,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/user").permitAll() // allow signup through postman
+                        .requestMatchers(HttpMethod.POST, "/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/roleHierarchy").hasRole("STAFF")
                         .anyRequest().authenticated()
                 )
-                .formLogin(withDefaults())   // enables default login page
-                .httpBasic(withDefaults());  // allows testing with curl/Postman
+                .formLogin(withDefaults())
+                .httpBasic(withDefaults());
 
         return http.build();
     }

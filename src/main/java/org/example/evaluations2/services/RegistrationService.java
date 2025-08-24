@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Service
-public class UserService implements IUserService {
+public class RegistrationService implements IRegistrationService {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -29,20 +29,18 @@ public class UserService implements IUserService {
                     ("There is an account with that email address: " + accountDto.getEmail());
         }
         User user = new User();
-
         user.setFirstName(accountDto.getFirstName());
         user.setLastName(accountDto.getLastName());
         user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         user.setEmail(accountDto.getEmail());
-        user.setEnabled(true); //important
-        user.setTokenExpired(false); //important
-
+        user.setEnabled(true);
+        user.setTokenExpired(false);
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
-        return repository.save(user);
+        return userRepository.save(user);
     }
 
     private Boolean emailExist(String email) {
-        User user = repository.findByEmail(email);
+        User user = userRepository.findByEmail(email);
         return user != null;
     }
 }

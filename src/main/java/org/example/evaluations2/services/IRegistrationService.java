@@ -3,6 +3,6 @@ package org.example.evaluations2.services;
 import org.example.evaluations2.dtos.UserDto;
 import org.example.evaluations2.models.User;
 
-public interface IUserService {
+public interface IRegistrationService {
     User registerNewUserAccount(UserDto accountDto);
 }
