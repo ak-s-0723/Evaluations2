@@ -15,3 +15,17 @@ You only need to make changes in PasswordMatches and PasswordMatchesValidator. P
 ## Hints
 - Nothing is needed from your side in pom.xml or application.properties. Dependency is already added.
 - No new file need to be created.
+
+## Extra Read 
+
+- @Target({TYPE, ANNOTATION_TYPE})
+   - This tells where this annotation can be used.
+   - TYPE → can be used on a class, interface, or enum.
+   - ANNOTATION_TYPE → can also be used on another annotation (meta-annotation).
+- @Retention(RUNTIME)
+   - This tells how long the annotation should be kept.
+   - RUNTIME → The annotation will be available at runtime, so reflection-based frameworks like Spring Validator or Hibernate Validator can detect and use it.
+- @Documented
+  - This ensures that when Javadoc is generated, this annotation is included in the documentation.
+  - Not required but helps in API documentation.
+- 
