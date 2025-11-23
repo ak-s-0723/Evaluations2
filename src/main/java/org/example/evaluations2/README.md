@@ -2,7 +2,10 @@
 
 ## Requirements
 
-In RegistrationController , you need to implement an API with endpoint `registration` which will take input in form of UserDto and return created User object in case signup is successful.
+In RegistrationController , 
+ - You need to implement an API with endpoint `registration` which will take input in form of UserDto and return created User object in case signup is successful. 
+ - In case of success, also return `CREATED` status along with Response Body.
+ - In case of exception, return `CONFLICT` status along with null Response Body.
 
 In UserService, add functionality in `registerNewUserAccount` method. 
  - If email already exists, You need to throw UserAlreadyExistException with message "There is already an account with email address: {emailvalue}"
