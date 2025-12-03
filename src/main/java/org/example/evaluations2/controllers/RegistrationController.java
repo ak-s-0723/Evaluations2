@@ -4,6 +4,8 @@ import org.example.evaluations2.dtos.UserDto;
 import org.example.evaluations2.models.User;
 import org.example.evaluations2.services.IRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,8 @@ public class RegistrationController {
     IRegistrationService registrationService;
 
     @PostMapping
-    public User registerNewUserAccount(@RequestBody  UserDto accountDto) {
-        return registrationService.registerNewUserAccount(accountDto);
+    public ResponseEntity<User> registerNewUserAccount(@RequestBody UserDto accountDto) {
+        return new ResponseEntity<>(registrationService.registerNewUserAccount(accountDto),
+                HttpStatus.CREATED);
     }
 }
