@@ -56,7 +56,7 @@ public class UserControllerTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 // Then: expect 200 OK and correct JSON fields
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.email", is("test@example.com")))
                 .andExpect(jsonPath("$.firstName", is("John")))
