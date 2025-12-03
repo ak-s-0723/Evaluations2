@@ -2,7 +2,31 @@
 
 ## Requirements
 
-You need to create 3 Entities 
+In any secure application, controlling who can access what is critical. This is where Authentication and Authorization come into play.
+To implement these correctly, we typically use a structured model involving Users, Roles, and Privileges.
+
+1. Authentication – “Who are you?”
+
+   - Authentication is the process of verifying the `identity` of a user.
+
+2. Authorization – “What are you allowed to do?”
+   - After authentication, the next step is authorization—determining the permissions the user has.
+   - This is where Roles and Privileges become important.
+   
+3. Roles – Grouping of permissions
+    - A role represents a collection of actions a user can perform.
+    - Example: 
+       - ROLE_ADMIN → can manage users, view reports, delete data
+       - ROLE_USER → can view own data, update own profile
+    - Roles reduce complexity by grouping permissions into meaningful categories.
+4. Privileges – Fine-grained permissions
+    - Privileges are the most granular access-control units.
+    -  A role usually contains many privileges.
+    - ADMIN can have READ_USER, WRITE_USER, DELETE_USER, READ_REPORTS
+    - USER can have READ_USER
+
+
+Here the task is to create 3 Entities 
 
 `users_` with columns `ID`, `FIRST_NAME`, `LAST_NAME`, `PASSWORD`, `EMAIL`, `ENABLED` ,`TOKEN_EXPIRED`
 
