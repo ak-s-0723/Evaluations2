@@ -1,5 +1,12 @@
 # Activate a new account by Email 
 
+## Goal
+
+Email Verification - Event Publishing
+
+Implement asynchronous email verification using Spring's event-driven architecture. This pattern is used in production for scalability and decoupling.
+
+
 ## Requirements
 
 Please go through https://www.baeldung.com/registration-verify-user-by-email before solving this assignment.
@@ -8,9 +15,9 @@ Please create an account on Gmail and generate App Password using https://myacco
 
 This will help you run Integration Test and also test functionality while running App.
 
-You need to add functionality in method `publishEvent` of RegistrationPublisher. Create an instance of OnRegistrationCompleteEvent and publishEvent through ApplicationEventPublisher.
+You need to add functionality in the method `publishEvent` of RegistrationPublisher. Create an instance of OnRegistrationCompleteEvent and publishEvent through ApplicationEventPublisher.
 
-Also add implementation in `confirmRegistration` method of RegistrationListener as per below details. Same steps are also present in Baeldung reference link given above.
+Also add implementation in `confirmRegistration` method of RegistrationListener as per below details. The same steps are also present in the Baeldung reference link given above.
  - Get User from event
  - Generate a random alphanumeric token of length 30 using `RandomStringUtils`
  - create VerificationToken using RegistrationService
