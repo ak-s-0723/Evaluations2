@@ -1,5 +1,9 @@
 # Roles and Privileges Part 1
 
+## Goal
+
+Teach proper RBAC modeling (User–Role–Privilege) in a way that maps naturally to Spring Security and JWT claims.
+
 ## Requirements
 
 In any secure application, controlling who can access what is critical. This is where Authentication and Authorization come into play.
