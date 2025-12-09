@@ -11,7 +11,7 @@ You're building a production-ready authentication service that issues JWT tokens
 Implement a POST API at /authToken with
 
  - Input: RequestDto 
- - Output: ResponseEntity<ResponseDto>
+ - Output: ResponseEntity`<ResponseDto>`
 
 - In case of Success
    - ResponseDto: { "status": "SUCCESS"}
