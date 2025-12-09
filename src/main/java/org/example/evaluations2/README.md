@@ -1,5 +1,8 @@
 # Roles and Privileges Part 2
 
+## Goal
+Tie RBAC to app startup, secure signup, and prepare for JWT claims.
+
 ### Requirements
 
 #### Please make sure you solve this assignment once you have solved Roles and Privileges Part 1
