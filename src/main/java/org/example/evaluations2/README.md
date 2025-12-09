@@ -1,5 +1,10 @@
 # Generate Jwt
 
+## Goal
+
+You're building a production-ready authentication service that issues JWT tokens. This implementation must handle concurrent sessions, prevent token abuse, and follow JWT security best practices commonly tested in backend interviews.​
+
+
 ## Requirements
 
 #### AuthController
