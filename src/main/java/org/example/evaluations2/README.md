@@ -1,17 +1,30 @@
 # Validate Jwt
 
+## Goal
+
+Build a secure token validation endpoint that protects your application's resources. This pattern is critical in microservices where each service validates JWTs independently without database calls
+
+
 ## Requirements
 
 #### Please solve this assignment once you have solved previous assignment of `Generate Jwt`
 
 #### AuthController
-- In AuthController, You need to add an API with endpoint `/validateToken` which will accept Bearer Token (JWT) in Authorization Headers and return `ResponseEntity<ResponseDto>`.
-- You need to extract Token from Headers before calling service method.
-- In case, JWT validation is successful, ResponseDto will have SUCCESS status and Empty String Message, Return that along with 200 status code.
-- In case of Exception, ResponseDto will have FAILURE status and Exception Message. Return that along with 401 status code.
+- Implement POST API at /validateToken
+  - Request : JWT token in Authorization header as Bearer <token>
+  - Response : ResponseEntity`<ResponseDto>`
+- (Hint) You need to extract Token from Headers before calling service method.
+- In case of Success 
+    - ResponseDto : {"status": "SUCCESS", "message": ""}
+    - Http Status :  200 OK
+- In case of Failure
+    - ResponseDto : {"status": "FAILURE", "message": "exception message"}
+    - Http Status :  401 UNAUTHORIZED
 
-#### AuthService
-- Please keep this in mind that whichever token we generated, we persisted that in sessionMap through SessionRepo while adding validation logic.
+
+#### AuthService -  validateToken Implementation
+
+- Please keep this in mind that the token which we generated, we persisted that in sessionMap through SessionRepo.
 - You need to add implementation in `validateToken` method, where you need to check if JWT is created by us and non-expired. If there is any violation, You need to throw JwtException.
 - Please make use of JwtConstants and SecretKey bean defined in AuthConfig
 
