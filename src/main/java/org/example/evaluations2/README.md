@@ -1,5 +1,9 @@
 # Roles and Privileges Part 3
 
+## Goal
+Bridge from entities to real Spring Security config and prepare for JWT-based auth later.
+
+
 ### Requirements
 
 #### Please solve this assignment once you have solved Roles and Privileges Part 1 and Part 2
