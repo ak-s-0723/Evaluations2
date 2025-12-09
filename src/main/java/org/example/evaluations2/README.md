@@ -8,9 +8,20 @@ You're building a production-ready authentication service that issues JWT tokens
 ## Requirements
 
 #### AuthController
-- In AuthController,You need to add an API with endpoint `/authToken` which will take input in form of `RequestDto` and return `ResponseEntity<ResponseDto>`.
-- In case, token creation is successful, ResponseDto will have SUCCESS status. `Bearer ` will be added in front of generated JWT and will be sent as Authorization Header along with 201 status code.
-- In case of Exception while token creation, ResponseDto will have FAILURE status and sent along with 500 status code.
+Implement a POST API at /authToken with
+
+ - Input: RequestDto 
+ - Output: ResponseEntity<ResponseDto>
+
+- In case of Success
+   - ResponseDto: { "status": "SUCCESS"}
+   - Status Code - 201 CREATED
+   - Headers: { "Authorization": "Bearer <JWT_TOKEN>" }
+
+- In case of failure
+  - ResponseDto: { "status": "FAILURE"}
+  - Status Code - 500 INTERNAL SERVER ERROR
+
 
 #### AuthService
 - You need to add implementation in `generateJwt` method, where you need to create and persist JWT.
