@@ -1,5 +1,9 @@
 # Activate a new account by Email Part-2
 
+## Goal
+
+Complete the email verification flow by validating tokens and enabling user accounts. Handle edge cases like expired links and invalid tokens.
+
 ## Requirements
 
 Please come to this assignment, once you have solved previous assignment.
