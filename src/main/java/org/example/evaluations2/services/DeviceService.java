@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.example.evaluations2.models.DeviceMetadata;
 import org.example.evaluations2.models.User;
 import org.example.evaluations2.repos.DeviceMetadataRepo;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import ua_parser.Client;
 
@@ -32,11 +31,30 @@ public class DeviceService {
     private final Parser parser;
 
     public DeviceService() throws IOException {
-        ClassPathResource resource = new ClassPathResource("geoip/GeoLite2-City.mmdb");
-        dbReader = new DatabaseReader.Builder(resource.getFile()).build();
+        //ClassPathResource resource = new ClassPathResource("geoip/GeoLite2-City.mmdb");
+        dbReader = null; //new DatabaseReader.Builder(resource.getFile()).build();
         deviceMetadataRepository = new DeviceMetadataRepo();
         parser = new Parser();
     }
+
+//    public DeviceService() {
+////        DatabaseReader reader = null;
+////        try {
+////            ClassPathResource resource = new ClassPathResource("geoip/GeoLite2-City.mmdb");
+////            reader = new DatabaseReader.Builder(resource.getInputStream()).build();
+////        } catch (Exception e) {
+////            reader = null; // fallback
+////        }
+//        this.dbReader = null;
+//        this.deviceMetadataRepository = new DeviceMetadataRepo();
+//        this.parser = new Parser();
+//    }
+//
+////    public DeviceService(DatabaseReader dbReader, DeviceMetadataRepo repo, Parser parser) {
+////        this.dbReader = dbReader;
+////        this.deviceMetadataRepository = repo;
+////        this.parser = parser;
+////    }
 
     private String getDeviceDetails(String userAgent) {
         String deviceDetails = "";
