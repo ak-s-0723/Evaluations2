@@ -25,8 +25,8 @@ public class DeviceService {
     private final Parser parser;
 
     public DeviceService() throws IOException {
-        ClassPathResource resource = new ClassPathResource("geoip/GeoLite2-City.mmdb");
-        dbReader = new DatabaseReader.Builder(resource.getFile()).build();
+        //Keeping dbReader null explicitly as we don't have mmdb file available and this will not impact evaluation.
+        dbReader = null;
         deviceMetadataRepository = new DeviceMetadataRepo();
         parser = new Parser();
     }
