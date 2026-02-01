@@ -11,8 +11,7 @@ public class OrderConsumer {
 
     @KafkaListener(
             topics = "order-events",
-            groupId = "order-group",
-            containerFactory = "kafkaListenerContainerFactory"
+            groupId = "order-group"
     )
     public void consume(OrderEvent order) {
         try {
