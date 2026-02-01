@@ -4,12 +4,16 @@ import org.example.evaluations2.dtos.OrderEvent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.awaitility.Awaitility.await;
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 @EmbeddedKafka(
@@ -23,6 +27,9 @@ class OrderKafkaIntegrationTest {
     @Autowired
     private KafkaTemplate<String, OrderEvent> kafkaTemplate;
 
+    @SpyBean
+    private OrderConsumer orderConsumer;
+
     @Test
     void shouldConsumeAndProcessOrderSuccessfully() {
 
@@ -35,8 +42,9 @@ class OrderKafkaIntegrationTest {
 
         await()
                 .atMost(5, SECONDS)
-                .untilAsserted(() -> {
-                    assert true;
-                });
+                .untilAsserted(() ->
+                        verify(orderConsumer, times(1))
+                                .consume(any(OrderEvent.class))
+                );
     }
 }
