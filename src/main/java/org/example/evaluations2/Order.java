@@ -24,6 +24,8 @@ public class Order {
         return new Builder();
     }
 
+    // Getters only (NO setters)
+
     public String getOrderId() { return orderId; }
     public String getCustomerName() { return customerName; }
     public int getQuantity() { return quantity; }
@@ -32,74 +34,19 @@ public class Order {
     public String getCouponCode() { return couponCode; }
     public boolean isGiftWrap() { return giftWrap; }
 
+    // ================= BUILDER =================
     public static class Builder {
 
-        private String orderId;
-        private String customerName;
-        private int quantity;
-        private double price;
-        private double discount;
-        private String couponCode;
-        private boolean giftWrap;
+        String orderId;
+        String customerName;
+        int quantity;
+        double price;
+        double discount;
+        String couponCode;
+        boolean giftWrap;
 
-        public Builder orderId(String orderId) {
-            this.orderId = orderId;
-            return this;
-        }
-
-        public Builder customerName(String customerName) {
-            this.customerName = customerName;
-            return this;
-        }
-
-        public Builder quantity(int quantity) {
-            this.quantity = quantity;
-            return this;
-        }
-
-        public Builder price(double price) {
-            this.price = price;
-            return this;
-        }
-
-        public Builder discount(double discount) {
-            this.discount = discount;
-            return this;
-        }
-
-        public Builder couponCode(String couponCode) {
-            this.couponCode = couponCode;
-            return this;
-        }
-
-        public Builder giftWrap(boolean giftWrap) {
-            this.giftWrap = giftWrap;
-            return this;
-        }
-
-        public Order build() {
-
-            if (orderId == null || orderId.isBlank()) {
-                throw new IllegalArgumentException("orderId is mandatory");
-            }
-
-            if (customerName == null) {
-                throw new IllegalArgumentException("customerName is mandatory");
-            }
-
-            if (quantity <= 0) {
-                throw new IllegalArgumentException("quantity must be greater than zero");
-            }
-
-            if (price <= 0) {
-                throw new IllegalArgumentException("price must be greater than zero");
-            }
-
-            if (discount < 0) {
-                throw new IllegalArgumentException("discount cannot be negative");
-            }
-
-            return new Order(this);
-        }
+        // TODO: Implement builder methods
+        // TODO: Implement validation
+        // TODO: Implement build()
     }
 }
