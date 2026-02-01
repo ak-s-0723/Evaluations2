@@ -14,7 +14,6 @@
 - You need to add logic in OrderConsumer which is kafkaConsumer
   - `consume` method will be subscribed to kafka at topic `order-events`.
   - GroupId for consumer will be `order-group`
-  - Also set containerFactory as `kafkaListenerContainerFactory`
   - Implement `processOrder` method which is called by consume and contains core logic for what need to be done.
      - Check for orderId, if its null, set order status as `FAILED` and throw IllegalArgumentException with message `Received OrderId is null`
      - Change order status to `PROCESSED`
